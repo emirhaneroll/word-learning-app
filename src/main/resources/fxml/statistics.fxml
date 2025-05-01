@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="com.wordlearning.controller.StatisticsController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="İstatistikler" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+    
+    <GridPane vgap="10" hgap="10">
+        <Label text="Toplam Kelime Sayısı:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <Label fx:id="totalWordsLabel" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        
+        <Label text="Öğrenilen Kelime Sayısı:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <Label fx:id="learnedWordsLabel" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        
+        <Label text="Çalışılan Kelime Sayısı:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <Label fx:id="studiedWordsLabel" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        
+        <Label text="Başarı Oranı:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <Label fx:id="successRateLabel" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+    </GridPane>
+    
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Geri Dön" onAction="#handleBack"/>
+    </HBox>
+</VBox> 

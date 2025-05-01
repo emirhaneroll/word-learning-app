@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="com.wordlearning.controller.SettingsController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Ayarlar" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+    
+    <GridPane vgap="10" hgap="10">
+        <Label text="Günlük Kelime Hedefi:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="dailyGoalField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        
+        <Label text="Tekrar Aralığı (gün):" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="reviewIntervalField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        
+        <Label text="Bildirimler:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <CheckBox fx:id="notificationsCheckBox" text="Günlük hatırlatmaları etkinleştir" 
+                 GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    </GridPane>
+    
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Kaydet" onAction="#handleSave"/>
+        <Button text="Geri Dön" onAction="#handleBack"/>
+    </HBox>
+</VBox> 

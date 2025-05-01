@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.wordlearning.controller.MainController">
+    <top>
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="Kelime Öğrenme Uygulaması" style="-fx-font-size: 20px;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Çıkış" onAction="#handleLogout"/>
+        </HBox>
+    </top>
+    
+    <left>
+        <VBox styleClass="sidebar" spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Button text="Kelime Çalış" onAction="#handleStudyWords" maxWidth="Infinity"/>
+            <Button text="Kelime Ekle" onAction="#handleAddWord" maxWidth="Infinity"/>
+            <Button text="İstatistikler" onAction="#handleStatistics" maxWidth="Infinity"/>
+            <Button text="Ayarlar" onAction="#handleSettings" maxWidth="Infinity"/>
+        </VBox>
+    </left>
+    
+    <center>
+        <StackPane fx:id="contentArea">
+            <!-- Dynamic content will be loaded here -->
+        </StackPane>
+    </center>
+</BorderPane> 

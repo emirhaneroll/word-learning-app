@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.wordlearning.controller.StudyWordsController" spacing="20">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Kelime Çalışma" style="-fx-font-size: 24px;"/>
+    
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Günlük Kelime Sayısı:"/>
+        <Spinner fx:id="wordCountSpinner" min="1" max="50" initialValue="10"/>
+        <Button text="Başla" onAction="#handleStartStudy"/>
+    </HBox>
+    
+    <StackPane fx:id="wordCardArea" VBox.vgrow="ALWAYS">
+        <!-- Word card will be loaded here -->
+    </StackPane>
+    
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Bilmiyorum" onAction="#handleDontKnow" style="-fx-background-color: #ff4444;"/>
+        <Button text="Biliyorum" onAction="#handleKnow" style="-fx-background-color: #44ff44;"/>
+    </HBox>
+    
+    <ProgressBar fx:id="progressBar" progress="0.0" maxWidth="Infinity"/>
+    <Label fx:id="progressLabel" text="0/0 kelime tamamlandı"/>
+</VBox> 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.wordlearning.controller.AddWordController" spacing="20">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Yeni Kelime Ekle" style="-fx-font-size: 24px;"/>
+    
+    <GridPane vgap="10" hgap="10">
+        <Label text="İngilizce Kelime:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="englishWordField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        
+        <Label text="Türkçe Karşılığı:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="turkishWordField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        
+        <Label text="Örnek Cümle:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextArea fx:id="sampleField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        
+        <Label text="Görsel URL:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="imageUrlField" HBox.hgrow="ALWAYS"/>
+            <Button text="Görsel Seç" onAction="#handleSelectImage"/>
+        </HBox>
+        
+        <Label text="Ses URL:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextField fx:id="audioUrlField" HBox.hgrow="ALWAYS"/>
+            <Button text="Ses Seç" onAction="#handleSelectAudio"/>
+        </HBox>
+    </GridPane>
+    
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Temizle" onAction="#handleClear"/>
+        <Button text="Kaydet" onAction="#handleSave" style="-fx-background-color: #4CAF50;"/>
+    </HBox>
+</VBox> 
