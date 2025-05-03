@@ -7,9 +7,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import com.wordlearning.model.Word;
 import com.wordlearning.model.WordSample;
+import com.wordlearning.model.User;
 import com.wordlearning.service.WordService;
 import java.io.File;
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class AddWordController {
     @FXML
@@ -28,13 +29,23 @@ public class AddWordController {
     private TextField audioUrlField;
     
     private WordService wordService;
+    private User currentUser;
     
     public AddWordController() {
         wordService = new WordService();
     }
     
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
+    }
+    
     @FXML
     private void handleSave() {
+        if (currentUser == null) {
+            showAlert("Hata", "Lütfen önce giriş yapın.", AlertType.ERROR);
+            return;
+        }
+        
         String englishWord = englishWordField.getText().trim();
         String turkishWord = turkishWordField.getText().trim();
         String sample = sampleField.getText().trim();
@@ -48,8 +59,8 @@ public class AddWordController {
         
         try {
             Word word = new Word();
-            word.setEnglishWord(englishWord);
-            word.setTurkishWord(turkishWord);
+            word.setEnglish(englishWord);
+            word.setTurkish(turkishWord);
             word.setImageUrl(imageUrl);
             word.setAudioUrl(audioUrl);
             
@@ -57,7 +68,7 @@ public class AddWordController {
                 WordSample wordSample = new WordSample();
                 wordSample.setWord(word);
                 wordSample.setSample(sample);
-                word.setSamples(new ArrayList<>());
+                word.setSamples(new HashSet<>());
                 word.getSamples().add(wordSample);
             }
             

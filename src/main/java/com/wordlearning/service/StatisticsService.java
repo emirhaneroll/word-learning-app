@@ -44,7 +44,7 @@ public class StatisticsService {
     public long getLearnedWords() {
         try {
             TypedQuery<Long> query = em.createQuery(
-                "SELECT COUNT(wp) FROM WordProgress wp WHERE wp.proficiencyLevel >= 4", 
+                "SELECT COUNT(wp) FROM WordProgress wp WHERE wp.proficiencyLevel >= 3", 
                 Long.class
             );
             return query.getSingleResult();
@@ -89,8 +89,8 @@ public class StatisticsService {
                 return 0.0;
             }
             
-            // Başarı oranını yüzde olarak hesapla (5 üzerinden)
-            return (result / 5.0) * 100.0;
+            // Başarı oranını yüzde olarak hesapla (4 üzerinden)
+            return (result / 4.0) * 100.0;
         } catch (Exception e) {
             lastError = "Başarı oranı hesaplanırken hata oluştu: " + e.getMessage();
             e.printStackTrace();

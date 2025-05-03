@@ -16,8 +16,10 @@ public class UserService {
         try {
             emf = Persistence.createEntityManagerFactory("wordlearning");
             em = emf.createEntityManager();
+            System.out.println("UserService initialized successfully");
         } catch (Exception e) {
             lastError = "Veritabanı bağlantısı kurulamadı: " + e.getMessage();
+            System.err.println("Error initializing UserService: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -26,8 +28,10 @@ public class UserService {
         return lastError;
     }
     
-    public boolean login(String username, String password) {
+    public User login(String username, String password) {
         try {
+            System.out.println("Attempting login for user: " + username);
+            
             TypedQuery<User> query = em.createQuery(
                 "SELECT u FROM User u WHERE u.username = :username AND u.password = :password", 
                 User.class
@@ -36,16 +40,28 @@ public class UserService {
             query.setParameter("password", password);
             
             List<User> users = query.getResultList();
-            return !users.isEmpty();
+            User user = users.isEmpty() ? null : users.get(0);
+            
+            if (user != null) {
+                System.out.println("Login successful for user: " + username);
+            } else {
+                System.out.println("Login failed for user: " + username);
+                lastError = "Kullanıcı adı veya şifre hatalı.";
+            }
+            
+            return user;
         } catch (Exception e) {
             lastError = "Giriş yapılırken hata oluştu: " + e.getMessage();
+            System.err.println("Error during login: " + e.getMessage());
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
     
     public boolean register(String username, String password) {
         try {
+            System.out.println("Attempting registration for user: " + username);
+            
             // Kullanıcı adı kontrolü
             TypedQuery<User> checkQuery = em.createQuery(
                 "SELECT u FROM User u WHERE u.username = :username", 
@@ -55,6 +71,7 @@ public class UserService {
             
             if (!checkQuery.getResultList().isEmpty()) {
                 lastError = "Bu kullanıcı adı zaten kullanılıyor.";
+                System.out.println("Registration failed: Username already exists");
                 return false;
             }
             
@@ -63,15 +80,19 @@ public class UserService {
             User user = new User();
             user.setUsername(username);
             user.setPassword(password);
+            user.setNewWordsPerDay(10); // Varsayılan değer
             
             em.persist(user);
             em.getTransaction().commit();
+            
+            System.out.println("Registration successful for user: " + username);
             return true;
         } catch (Exception e) {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
             lastError = "Kayıt olurken hata oluştu: " + e.getMessage();
+            System.err.println("Error during registration: " + e.getMessage());
             e.printStackTrace();
             return false;
         }
@@ -79,6 +100,8 @@ public class UserService {
     
     public boolean resetPassword(String username, String newPassword) {
         try {
+            System.out.println("Attempting password reset for user: " + username);
+            
             em.getTransaction().begin();
             
             TypedQuery<User> query = em.createQuery(
@@ -90,6 +113,7 @@ public class UserService {
             List<User> users = query.getResultList();
             if (users.isEmpty()) {
                 lastError = "Kullanıcı bulunamadı.";
+                System.out.println("Password reset failed: User not found");
                 return false;
             }
             
@@ -97,12 +121,15 @@ public class UserService {
             user.setPassword(newPassword);
             
             em.getTransaction().commit();
+            
+            System.out.println("Password reset successful for user: " + username);
             return true;
         } catch (Exception e) {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
             lastError = "Şifre sıfırlanırken hata oluştu: " + e.getMessage();
+            System.err.println("Error during password reset: " + e.getMessage());
             e.printStackTrace();
             return false;
         }

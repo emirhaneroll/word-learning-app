@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.wordlearning.controller.MainController">
-    <top>
-        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="10">
-            <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
-            </padding>
-            <Label text="Kelime Öğrenme Uygulaması" style="-fx-font-size: 20px;"/>
-            <Region HBox.hgrow="ALWAYS"/>
-            <Button text="Çıkış" onAction="#handleLogout"/>
-        </HBox>
-    </top>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.wordlearning.controller.MainController"
+            stylesheets="@../styles/main.css">
     
     <left>
-        <VBox styleClass="sidebar" spacing="10">
+        <VBox styleClass="sidebar">
             <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
+                <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
-            <Button text="Kelime Çalış" onAction="#handleStudyWords" maxWidth="Infinity"/>
-            <Button text="Kelime Ekle" onAction="#handleAddWord" maxWidth="Infinity"/>
-            <Button text="İstatistikler" onAction="#handleStatistics" maxWidth="Infinity"/>
-            <Button text="Ayarlar" onAction="#handleSettings" maxWidth="Infinity"/>
+            
+            <Label text="Kelime Öğrenme" styleClass="app-title"/>
+            
+            <VBox styleClass="menu-items">
+                <Button text="Kelime Ekle" onAction="#handleAddWord" styleClass="menu-button"/>
+                <Button text="Kelime Çalış" onAction="#handleStudyWords" styleClass="menu-button"/>
+                <Button text="İstatistikler" onAction="#handleStatistics" styleClass="menu-button"/>
+            </VBox>
+            
+            <Region VBox.vgrow="ALWAYS"/>
+            
+            <Button text="Çıkış Yap" onAction="#handleLogout" styleClass="logout-button"/>
         </VBox>
     </left>
     
     <center>
-        <StackPane fx:id="contentArea">
-            <!-- Dynamic content will be loaded here -->
+        <StackPane fx:id="contentArea" styleClass="content-area">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
         </StackPane>
     </center>
+    
 </BorderPane> 

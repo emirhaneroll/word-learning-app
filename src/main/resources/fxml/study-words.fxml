@@ -17,14 +17,9 @@
         <Button text="Başla" onAction="#handleStartStudy"/>
     </HBox>
     
-    <StackPane fx:id="wordCardArea" VBox.vgrow="ALWAYS">
+    <StackPane fx:id="wordCard" VBox.vgrow="ALWAYS">
         <!-- Word card will be loaded here -->
     </StackPane>
-    
-    <HBox spacing="10" alignment="CENTER">
-        <Button text="Bilmiyorum" onAction="#handleDontKnow" style="-fx-background-color: #ff4444;"/>
-        <Button text="Biliyorum" onAction="#handleKnow" style="-fx-background-color: #44ff44;"/>
-    </HBox>
     
     <ProgressBar fx:id="progressBar" progress="0.0" maxWidth="Infinity"/>
     <Label fx:id="progressLabel" text="0/0 kelime tamamlandı"/>

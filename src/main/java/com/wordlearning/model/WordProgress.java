@@ -13,12 +13,12 @@ public class WordProgress {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-    @ManyToOne
     @JoinColumn(name = "word_id", nullable = false)
     private Word word;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Column(name = "correct_count", nullable = false)
     private Integer correctCount = 0;
@@ -31,4 +31,7 @@ public class WordProgress {
 
     @Column(name = "is_learned", nullable = false)
     private Boolean isLearned = false;
+
+    @Column(name = "proficiency_level", nullable = false)
+    private Integer proficiencyLevel = 0;
 } 
