@@ -10,14 +10,14 @@
             stylesheets="@../styles/main.css">
     
     <left>
-        <VBox styleClass="sidebar">
+        <VBox styleClass="sidebar" alignment="TOP_LEFT">
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
             
             <Label text="Kelime Öğrenme" styleClass="app-title"/>
             
-            <VBox styleClass="menu-items">
+            <VBox styleClass="menu-items" alignment="TOP_LEFT">
                 <Button text="Kelime Ekle" onAction="#handleAddWord" styleClass="menu-button"/>
                 <Button text="Kelime Çalış" onAction="#handleStudyWords" styleClass="menu-button"/>
                 <Button text="İstatistikler" onAction="#handleStatistics" styleClass="menu-button"/>

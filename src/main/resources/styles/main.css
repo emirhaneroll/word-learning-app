@@ -8,6 +8,7 @@
     -fx-min-width: 250px;
     -fx-pref-width: 250px;
     -fx-max-width: 250px;
+    -fx-spacing: 20;
 }
 
 .app-title {
@@ -19,6 +20,7 @@
 
 .menu-items {
     -fx-spacing: 10;
+    -fx-alignment: TOP_LEFT;
 }
 
 .menu-button {
@@ -29,6 +31,9 @@
     -fx-alignment: CENTER_LEFT;
     -fx-min-width: 200px;
     -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-border-insets: 0;
+    -fx-background-insets: 0;
 }
 
 .menu-button:hover {
@@ -42,6 +47,7 @@
     -fx-padding: 10 15;
     -fx-min-width: 200px;
     -fx-cursor: hand;
+    -fx-alignment: CENTER;
 }
 
 .logout-button:hover {

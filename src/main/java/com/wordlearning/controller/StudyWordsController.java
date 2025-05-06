@@ -310,6 +310,14 @@ public class StudyWordsController {
         
         showNavigationButtons(cardContent);
         wordService.updateWordProgress(currentWord, currentUser, isCorrect);
+        
+        // Update progress after answering
+        updateProgress();
+        
+        // Check if all words have been answered
+        if (userAnswers.size() == words.size()) {
+            showCompletionMessage();
+        }
     }
 
     private void updateProgress() {
